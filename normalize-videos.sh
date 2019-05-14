@@ -55,7 +55,7 @@ convert() {
             outFile=$(echo "$inFile" | perl -pe "s/\.[^.]*$/.mkv/g")
             echo "  converting: $inFile -> $outFile"
             if [[ -f "$tmpFile" ]]; then rm "$tmpFile"; fi
-            if ffmpeg -i "$inFile" $videoArgs $audioArgs -n "$tmpFile"; then
+            if < /dev/null ffmpeg -i "$inFile" $videoArgs $audioArgs -n "$tmpFile"; then
                 mkdir -p $(dirname "$convertedFile")
                 mv "$inFile" "$convertedFile"
                 mv "$tmpFile" "$outFile"
