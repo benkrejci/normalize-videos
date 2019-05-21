@@ -4,8 +4,8 @@ MAX_HEIGHT="1080"
 EXCLUDE_VIDEO_FORMAT="hevc"
 VIDEO_CODEC="h264"
 VIDEO_CODEC_ARGS="-preset medium"
-AUDIO_CODEC="mp3"
-OTHER_ACCEPTABLE_AUDIO_CODEC="aac"
+AUDIO_CODEC="aac"
+OTHER_ACCEPTABLE_AUDIO_CODEC="mp3"
 AUDIO_BIT_RATE="320k"
 AUDIO_CODEC_ARGS="-b:a $AUDIO_BIT_RATE"
 CONVERTED_DIR_NAME="converted"
@@ -29,7 +29,7 @@ convert() {
     convertedFile=$2
 
     echo "Checking: $inFile ..."
-    info="$(avconv -i "$inFile" 2>&1)"
+    info="$(ffmpeg -i "$inFile" 2>&1)"
     videoInfo=$(echo "$info" | grep "Stream #.:.([^)]*): Video")
     audioInfo=$(echo "$info" | grep "Stream #.:.([^)]*): Audio")
     echo "  video: $videoInfo"
